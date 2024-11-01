@@ -352,16 +352,20 @@ public class create_message : MonoBehaviour
     private void OnRight(InputAction.CallbackContext context)
     {
         _RightInputValue = context.ReadValue<Vector2>();
-        _RightInputValue *= 1000;
         _RightLocateValue = _RightInputValue;
+        _RightInputValue *= 1000;
+        _RightInputValue.x += 1000;
+        _RightInputValue.y += 1000;
         _RightLocateValue *= 60f;
         _R.transform.localPosition = _RightLocateValue;
     }
     private void OnLeft(InputAction.CallbackContext context)
     {
         _LeftInputValue = context.ReadValue<Vector2>();
-        _LeftInputValue *= 1000;
         _LeftLocateValue = _LeftInputValue;
+        _LeftInputValue *= 1000;
+        _LeftInputValue.x += 1000;
+        _LeftInputValue.y += 1000;
         _LeftLocateValue *= 60f;
         _L.transform.localPosition = _LeftLocateValue;
     }
@@ -369,6 +373,6 @@ public class create_message : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _udp._message = _LeftInputValue.x.ToString("F0") + "," + _LeftInputValue.y.ToString("F0") + "," + _RightInputValue.x.ToString("F0") + "," + _RightInputValue.y.ToString("F0") + "," + _Ci + "," + _Cr + "," + _Sq + "," + _Tr + "," + _Ri + "," + _Do + "," + _Le + "," + _Up + "," + _R1 + "," + _L1 + "," + _R2 + "," + _L2 + "," + _R3 + "," + _L3 + "," + _Op + "," + _Sh + "," + _To;
+        _udp._message = _RightInputValue.x.ToString("0000") + "," + _RightInputValue.y.ToString("0000") + "," + _LeftInputValue.x.ToString("0000") + "," + _LeftInputValue.y.ToString("0000") + "," + _R1 + "," + _L1 + "," + _R2 + "," + _L2 + "," + _R3 + "," + _L3 + "," + _Ci + "," + _Cr + "," + _Sq + "," + _Tr + "," + _Ri + "," + _Do + "," + _Le + "," + _Up + "," + _Op + "," + _Sh + "," + _To;
     }
 }
