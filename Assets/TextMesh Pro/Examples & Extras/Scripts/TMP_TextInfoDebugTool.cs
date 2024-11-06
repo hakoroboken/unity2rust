@@ -200,8 +200,8 @@ namespace TMPro.Examples
                    GUIStyle style = new GUIStyle(GUI.skin.GetStyle("Label"));
                    style.normal.textColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
                    style.fontSize = 12;
-                   style.fixedWidth = 200;
-                   style.fixedHeight = 20;
+                   style.fixedWidth = 00;
+                   style.fixedHeight = 0;
 
                    Vector3 labelPosition;
                    float center = (origin + advance) / 2;
@@ -524,8 +524,8 @@ namespace TMPro.Examples
                     GUIStyle style = new GUIStyle();
                     style.normal.textColor = new Color(0.8f, 0.8f, 0.8f, 1.0f);
                     style.fontSize = 12;
-                    style.fixedWidth = 200;
-                    style.fixedHeight = 20;
+                    style.fixedWidth = 00;
+                    style.fixedHeight = 0;
                     Vector3 labelPosition;
 
                     // Ascent Line

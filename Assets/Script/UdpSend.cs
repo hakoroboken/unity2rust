@@ -5,7 +5,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-public class udp_send : MonoBehaviour
+public class UdpSend : MonoBehaviour
 {
     public string _message;
     public TextMeshProUGUI Sending_Text;

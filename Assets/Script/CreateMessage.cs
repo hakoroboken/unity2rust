@@ -6,9 +6,10 @@ using UnityEngine.UI;
 using TMPro;
 
 
-public class create_message : MonoBehaviour
+public class CreateMessage : MonoBehaviour
 {
-    public udp_send _udp;
+    public UdpSend _udp;
+    public ButtonScript _buttonS;
     private GameInputs _gameInputs;
 
     public GameObject _circle;
@@ -25,7 +26,6 @@ public class create_message : MonoBehaviour
     public GameObject _l1;
     public GameObject _l2;
     public GameObject _l3;
-    public GameObject _touchpad;
     public GameObject _option;
     public GameObject _share;
 
@@ -46,7 +46,6 @@ public class create_message : MonoBehaviour
     private Image l1;
     private Image l2;
     private Image l3;
-    private Image touchpad;
     private Image option;
     private Image share;
 
@@ -55,7 +54,6 @@ public class create_message : MonoBehaviour
     public Sprite[] _1;
     public Sprite[] _2;
     public Sprite[] _minibutton;
-    public Sprite[] _touch;
 
     public float _Ci;
     public float _Cr;
@@ -71,7 +69,6 @@ public class create_message : MonoBehaviour
     public float _L1;
     public float _L2;
     public float _L3;
-    public float _To;
     public float _Op;
     public float _Sh;
 
@@ -115,8 +112,6 @@ public class create_message : MonoBehaviour
         _gameInputs.Action.L3.performed += OnL3Start;
         _gameInputs.Action.L3.canceled += OnL3End;
 
-        _gameInputs.Action.TouchPad.performed += OnTouchStart;
-        _gameInputs.Action.TouchPad.canceled += OnTouchEnd;
         _gameInputs.Action.Options.performed += OnOptionStart;
         _gameInputs.Action.Options.canceled += OnOptionEnd;
         _gameInputs.Action.Share.performed += OnShareStart;
@@ -149,29 +144,30 @@ public class create_message : MonoBehaviour
         l1 = _l1.GetComponent<Image>();
         l2 = _l2.GetComponent<Image>();
         l3 = _l3.GetComponent<Image>();
-        touchpad = _touchpad.GetComponent<Image>();
         option = _option.GetComponent<Image>();
         share = _share.GetComponent<Image>();
 
-        _Ci = 0;
-        _Cr = 0;
-        _Sq = 0;
-        _Tr = 0;
-        _Up = 0;
-        _Do = 0;
-        _Ri = 0;
-        _Le = 0;
-        _R1 = 0;
-        _R2 = 0;
-        _R3 = 0;
-        _L1 = 0;
-        _L2 = 0;
-        _L3 = 0;
-        _To = 0;
-        _Op = 0;
-        _Sh = 0;
+        _Ci = 20;
+        _Cr = 20;
+        _Sq = 20;
+        _Tr = 20;
+        _Up = 20;
+        _Do = 20;
+        _Ri = 20;
+        _Le = 20;
+        _R1 = 20;
+        _R2 = 20;
+        _R3 = 20;
+        _L1 = 20;
+        _L2 = 20;
+        _L3 = 20;
+        _Op = 20;
+        _Sh = 20;
 
-        _udp._message = "";
+        _RightInputValue = new Vector2(20,20);
+        _LeftInputValue = new Vector2(20,20);
+
+        _udp._message = "20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20";
     }
 
     private void OnDestroy()
@@ -182,180 +178,170 @@ public class create_message : MonoBehaviour
     private void OnCircleStart(InputAction.CallbackContext context)
     {
         circle.sprite = _button[1];
-        _Ci = 1;
+        _Ci = 30;
     }
     private void OnCircleEnd(InputAction.CallbackContext context)
     {
         circle.sprite = _button[0];
-        _Ci = 0;
+        _Ci = 20;
     }
     private void OnCrossStart(InputAction.CallbackContext context)
     {
         cross.sprite = _button[1];
-        _Cr = 1;
+        _Cr = 30;
     }
     private void OnCrossEnd(InputAction.CallbackContext context)
     {
         cross.sprite = _button[0];
-        _Cr = 0;
+        _Cr = 20;
     }
     private void OnSquareStart(InputAction.CallbackContext context)
     {
         square.sprite = _button[1];
-        _Sq = 1;
+        _Sq = 30;
     }
     private void OnSquareEnd(InputAction.CallbackContext context)
     {
         square.sprite = _button[0];
-        _Sq = 0;
+        _Sq = 20;
     }
     private void OnTriangleStart(InputAction.CallbackContext context)
     {
         triangle.sprite = _button[1];
-        _Tr = 1;
+        _Tr = 30;
     }
     private void OnTriangleEnd(InputAction.CallbackContext context)
     {
         triangle.sprite = _button[0];
-        _Tr = 0;
+        _Tr = 20;
     }
     private void OnUpStart(InputAction.CallbackContext context)
     {
         up.sprite = _arrow[1];
-        _Up = 1;
+        _Up = 30;
     }
     private void OnUpEnd(InputAction.CallbackContext context)
     {
         up.sprite = _arrow[0];
-        _Up = 0;
+        _Up = 20;
     }
     private void OnDownStart(InputAction.CallbackContext context)
     {
         down.sprite = _arrow[1];
-        _Do = 1;
+        _Do = 30;
     }
     private void OnDownEnd(InputAction.CallbackContext context)
     {
         down.sprite = _arrow[0];
-        _Do = 0;
+        _Do = 20;
     }
     private void OnRightStart(InputAction.CallbackContext context)
     {
         right.sprite = _arrow[1];
-        _Ri = 1;
+        _Ri = 30;
     }
     private void OnRightEnd(InputAction.CallbackContext context)
     {
         right.sprite = _arrow[0];
-        _Ri = 0;
+        _Ri = 20;
     }
     private void OnLeftStart(InputAction.CallbackContext context)
     {
         left.sprite = _arrow[1];
-        _Le = 1;
+        _Le = 30;
     }
     private void OnLeftEnd(InputAction.CallbackContext context)
     {
         left.sprite = _arrow[0];
-        _Le = 0;
+        _Le = 20;
     }
     private void OnR1Start(InputAction.CallbackContext context)
     {
         r1.sprite = _1[1];
-        _R1 = 1;
+        _R1 = 30;
     }
     private void OnR1End(InputAction.CallbackContext context)
     {
         r1.sprite = _1[0];
-        _R1 = 0;
+        _R1 = 20;
     }
     private void OnR2Start(InputAction.CallbackContext context)
     {
         r2.sprite = _2[1];
-        _R2 = 1;
+        _R2 = 30;
     }
     private void OnR2End(InputAction.CallbackContext context)
     {
         r2.sprite = _2[0];
-        _R2 = 0;
+        _R2 = 20;
     }
     private void OnR3Start(InputAction.CallbackContext context)
     {
         r3.sprite = _button[1];
-        _R3 = 1;
+        _R3 = 30;
     }
     private void OnR3End(InputAction.CallbackContext context)
     {
         r3.sprite = _button[0];
-        _R3 = 0;
+        _R3 = 20;
     }
     private void OnL1Start(InputAction.CallbackContext context)
     {
         l1.sprite = _1[1];
-        _L1 = 1;
+        _L1 = 30;
     }
     private void OnL1End(InputAction.CallbackContext context)
     {
         l1.sprite = _1[0];
-        _L1 = 0;
+        _L1 = 20;
     }
     private void OnL2Start(InputAction.CallbackContext context)
     {
         l2.sprite = _2[1];
-        _L2 = 1;
+        _L2 = 30;
     }
     private void OnL2End(InputAction.CallbackContext context)
     {
         l2.sprite = _2[0];
-        _L2 = 0;
+        _L2 = 20;
     }
     private void OnL3Start(InputAction.CallbackContext context)
     {
         l3.sprite = _button[1];
-        _L3 = 1;
+        _L3 = 30;
     }
     private void OnL3End(InputAction.CallbackContext context)
     {
         l3.sprite = _button[0];
-        _L3 = 0;
-    }
-    private void OnTouchStart(InputAction.CallbackContext context)
-    {
-        touchpad.sprite = _touch[1];
-        _To = 1;
-    }
-    private void OnTouchEnd(InputAction.CallbackContext context)
-    {
-        touchpad.sprite = _touch[0];
-        _To = 0;
+        _L3 = 20;
     }
     private void OnOptionStart(InputAction.CallbackContext context)
     {
         option.sprite = _minibutton[1];
-        _Op = 1;
+        _Op = 30;
     }
     private void OnOptionEnd(InputAction.CallbackContext context)
     {
         option.sprite = _minibutton[0];
-        _Op = 0;
+        _Op = 20;
     }
     private void OnShareStart(InputAction.CallbackContext context)
     {
         share.sprite = _minibutton[1];
-        _Sh = 1;
+        _Sh = 30;
     }
     private void OnShareEnd(InputAction.CallbackContext context)
     {
         share.sprite = _minibutton[0];
-        _Sh = 0;
+        _Sh = 20;
     }
     private void OnRight(InputAction.CallbackContext context)
     {
         _RightInputValue = context.ReadValue<Vector2>();
         _RightLocateValue = _RightInputValue;
-        _RightInputValue *= 1000;
-        _RightInputValue.x += 1000;
-        _RightInputValue.y += 1000;
+        _RightInputValue *= 10;
+        _RightInputValue.x += 20;
+        _RightInputValue.y += 20;
         _RightLocateValue *= 60f;
         _R.transform.localPosition = _RightLocateValue;
     }
@@ -363,9 +349,9 @@ public class create_message : MonoBehaviour
     {
         _LeftInputValue = context.ReadValue<Vector2>();
         _LeftLocateValue = _LeftInputValue;
-        _LeftInputValue *= 1000;
-        _LeftInputValue.x += 1000;
-        _LeftInputValue.y += 1000;
+        _LeftInputValue *= 10;
+        _LeftInputValue.x += 20;
+        _LeftInputValue.y += 20;
         _LeftLocateValue *= 60f;
         _L.transform.localPosition = _LeftLocateValue;
     }
@@ -373,6 +359,11 @@ public class create_message : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _udp._message = _RightInputValue.x.ToString("0000") + "," + _RightInputValue.y.ToString("0000") + "," + _LeftInputValue.x.ToString("0000") + "," + _LeftInputValue.y.ToString("0000") + "," + _R1 + "," + _L1 + "," + _R2 + "," + _L2 + "," + _R3 + "," + _L3 + "," + _Ci + "," + _Cr + "," + _Sq + "," + _Tr + "," + _Ri + "," + _Do + "," + _Le + "," + _Up + "," + _Op + "," + _Sh + "," + _To;
+        if(_buttonS._sendcan){
+            _udp._message = _RightInputValue.x.ToString("00") + "," + _RightInputValue.y.ToString("00") + "," + _LeftInputValue.x.ToString("00") + "," + _LeftInputValue.y.ToString("00") + "," + _R1 + "," + _L1 + "," + _R2 + "," + _L2 + "," + _R3 + "," + _L3 + "," + _Ci + "," + _Cr + "," + _Sq + "," + _Tr + "," + _Ri + "," + _Do + "," + _Le + "," + _Up + "," + _Op + "," + _Sh;
+            Debug.Log(_udp._message);
+        }else{
+            _udp._message = "20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20";
+        }
     }
 }
