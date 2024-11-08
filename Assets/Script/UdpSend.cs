@@ -26,7 +26,6 @@ public class UdpSend : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Send");
         var message = Encoding.UTF8.GetBytes(_message);
         Sending_Text.text = _message;
         client.Send(message, message.Length);
