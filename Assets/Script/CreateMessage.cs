@@ -72,6 +72,9 @@ public class CreateMessage : MonoBehaviour
     public float _Op;
     public float _Sh;
 
+    public float _mag;
+    private float _highton;
+
     public Vector2 _LeftInputValue;
     public Vector2 _RightInputValue;
     public Vector2 _LeftLocateValue;
@@ -163,6 +166,9 @@ public class CreateMessage : MonoBehaviour
         _L3 = 20;
         _Op = 20;
         _Sh = 20;
+
+        _mag = 1;
+        _highton = 0;
 
         _RightInputValue = new Vector2(20,20);
         _LeftInputValue = new Vector2(20,20);
@@ -269,11 +275,19 @@ public class CreateMessage : MonoBehaviour
     {
         r2.sprite = _2[1];
         _R2 = 30;
+        _mag = 0.5f;
+        ChangeSpeed();
     }
     private void OnR2End(InputAction.CallbackContext context)
     {
         r2.sprite = _2[0];
         _R2 = 20;
+        if(_highton == 0){
+            _mag = 1;
+        }else{
+            _mag = 1.5f;
+        }
+        ChangeSpeed();
     }
     private void OnR3Start(InputAction.CallbackContext context)
     {
@@ -299,11 +313,21 @@ public class CreateMessage : MonoBehaviour
     {
         l2.sprite = _2[1];
         _L2 = 30;
+        _highton = 1;
+        if(_mag == 1){
+            _mag = 1.5f;
+            ChangeSpeed();
+        }
     }
     private void OnL2End(InputAction.CallbackContext context)
     {
         l2.sprite = _2[0];
         _L2 = 20;
+        _highton = 0;
+        if(_mag != 0.5f){
+            _mag = 1;
+            ChangeSpeed();
+        }
     }
     private void OnL3Start(InputAction.CallbackContext context)
     {
@@ -339,9 +363,19 @@ public class CreateMessage : MonoBehaviour
     {
         _RightInputValue = context.ReadValue<Vector2>();
         _RightLocateValue = _RightInputValue;
-        _RightInputValue *= 10;
+        _RightInputValue *= 10 * _mag;
         _RightInputValue.x += 20;
         _RightInputValue.y += 20;
+        if(_RightInputValue.x >= 30){
+            _RightInputValue.x = 30;
+        }else if(_RightInputValue.x <= 10){
+            _RightInputValue.x = 10;
+        }
+        if(_RightInputValue.y >= 30){
+            _RightInputValue.y = 30;
+        }else if(_RightInputValue.y <= 10){
+            _RightInputValue.y = 10;
+        }
         _RightLocateValue *= 60f;
         _R.transform.localPosition = _RightLocateValue;
     }
@@ -349,11 +383,52 @@ public class CreateMessage : MonoBehaviour
     {
         _LeftInputValue = context.ReadValue<Vector2>();
         _LeftLocateValue = _LeftInputValue;
-        _LeftInputValue *= 10;
+        _LeftInputValue *= 10 * _mag;
         _LeftInputValue.x += 20;
         _LeftInputValue.y += 20;
+        if(_LeftInputValue.x >= 30){
+            _LeftInputValue.x = 30;
+        }else if(_LeftInputValue.x <= 10){
+            _LeftInputValue.x = 10;
+        }
+        if(_LeftInputValue.y >= 30){
+            _LeftInputValue.y = 30;
+        }else if(_LeftInputValue.y <= 10){
+            _LeftInputValue.y = 10;
+        }
         _LeftLocateValue *= 60f;
         _L.transform.localPosition = _LeftLocateValue;
+    }
+
+    private void ChangeSpeed(){
+        _RightInputValue = _gameInputs.Action.RightStick.ReadValue<Vector2>();
+        _LeftInputValue = _gameInputs.Action.LeftStick.ReadValue<Vector2>();
+        _RightInputValue *= 10 * _mag;
+        _LeftInputValue *= 10 * _mag;
+        _RightInputValue.x += 20;
+        _RightInputValue.y += 20;
+        _LeftInputValue.x += 20;
+        _LeftInputValue.y += 20;
+        if(_RightInputValue.x >= 30){
+            _RightInputValue.x = 30;
+        }else if(_RightInputValue.x <= 10){
+            _RightInputValue.x = 10;
+        }
+        if(_RightInputValue.y >= 30){
+            _RightInputValue.y = 30;
+        }else if(_RightInputValue.y <= 10){
+            _RightInputValue.y = 10;
+        }
+        if(_LeftInputValue.x >= 30){
+            _LeftInputValue.x = 30;
+        }else if(_LeftInputValue.x <= 10){
+            _LeftInputValue.x = 10;
+        }
+        if(_LeftInputValue.y >= 30){
+            _LeftInputValue.y = 30;
+        }else if(_LeftInputValue.y <= 10){
+            _LeftInputValue.y = 10;
+        }
     }
 
     // Update is called once per frame
@@ -361,7 +436,6 @@ public class CreateMessage : MonoBehaviour
     {
         if(_buttonS._sendcan){
             _udp._message = _RightInputValue.x.ToString("00") + "," + _RightInputValue.y.ToString("00") + "," + _LeftInputValue.x.ToString("00") + "," + _LeftInputValue.y.ToString("00") + "," + _R1 + "," + _L1 + "," + _R2 + "," + _L2 + "," + _R3 + "," + _L3 + "," + _Ci + "," + _Cr + "," + _Sq + "," + _Tr + "," + _Ri + "," + _Do + "," + _Le + "," + _Up + "," + _Op + "," + _Sh;
-            Debug.Log(_udp._message);
         }else{
             _udp._message = "20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20";
         }
