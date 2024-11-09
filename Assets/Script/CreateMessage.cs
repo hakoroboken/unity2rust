@@ -167,7 +167,7 @@ public class CreateMessage : MonoBehaviour
         _Op = 20;
         _Sh = 20;
 
-        _mag = 1;
+        _mag = 0.75f;
         _highton = 0;
 
         _RightInputValue = new Vector2(20,20);
@@ -283,9 +283,9 @@ public class CreateMessage : MonoBehaviour
         r2.sprite = _2[0];
         _R2 = 20;
         if(_highton == 0){
-            _mag = 1;
+            _mag = 0.75f;
         }else{
-            _mag = 1.5f;
+            _mag = 1;
         }
         ChangeSpeed();
     }
@@ -314,8 +314,8 @@ public class CreateMessage : MonoBehaviour
         l2.sprite = _2[1];
         _L2 = 30;
         _highton = 1;
-        if(_mag == 1){
-            _mag = 1.5f;
+        if(_mag == 0.75f){
+            _mag = 1;
             ChangeSpeed();
         }
     }
@@ -325,7 +325,7 @@ public class CreateMessage : MonoBehaviour
         _L2 = 20;
         _highton = 0;
         if(_mag != 0.5f){
-            _mag = 1;
+            _mag = 0.75f;
             ChangeSpeed();
         }
     }
@@ -366,16 +366,6 @@ public class CreateMessage : MonoBehaviour
         _RightInputValue *= 10 * _mag;
         _RightInputValue.x += 20;
         _RightInputValue.y += 20;
-        if(_RightInputValue.x >= 30){
-            _RightInputValue.x = 30;
-        }else if(_RightInputValue.x <= 10){
-            _RightInputValue.x = 10;
-        }
-        if(_RightInputValue.y >= 30){
-            _RightInputValue.y = 30;
-        }else if(_RightInputValue.y <= 10){
-            _RightInputValue.y = 10;
-        }
         _RightLocateValue *= 60f;
         _R.transform.localPosition = _RightLocateValue;
     }
@@ -386,16 +376,6 @@ public class CreateMessage : MonoBehaviour
         _LeftInputValue *= 10 * _mag;
         _LeftInputValue.x += 20;
         _LeftInputValue.y += 20;
-        if(_LeftInputValue.x >= 30){
-            _LeftInputValue.x = 30;
-        }else if(_LeftInputValue.x <= 10){
-            _LeftInputValue.x = 10;
-        }
-        if(_LeftInputValue.y >= 30){
-            _LeftInputValue.y = 30;
-        }else if(_LeftInputValue.y <= 10){
-            _LeftInputValue.y = 10;
-        }
         _LeftLocateValue *= 60f;
         _L.transform.localPosition = _LeftLocateValue;
     }
@@ -409,26 +389,6 @@ public class CreateMessage : MonoBehaviour
         _RightInputValue.y += 20;
         _LeftInputValue.x += 20;
         _LeftInputValue.y += 20;
-        if(_RightInputValue.x >= 30){
-            _RightInputValue.x = 30;
-        }else if(_RightInputValue.x <= 10){
-            _RightInputValue.x = 10;
-        }
-        if(_RightInputValue.y >= 30){
-            _RightInputValue.y = 30;
-        }else if(_RightInputValue.y <= 10){
-            _RightInputValue.y = 10;
-        }
-        if(_LeftInputValue.x >= 30){
-            _LeftInputValue.x = 30;
-        }else if(_LeftInputValue.x <= 10){
-            _LeftInputValue.x = 10;
-        }
-        if(_LeftInputValue.y >= 30){
-            _LeftInputValue.y = 30;
-        }else if(_LeftInputValue.y <= 10){
-            _LeftInputValue.y = 10;
-        }
     }
 
     // Update is called once per frame
