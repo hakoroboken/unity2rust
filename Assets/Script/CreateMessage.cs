@@ -73,7 +73,8 @@ public class CreateMessage : MonoBehaviour
     public float _Sh;
 
     public float _mag;
-    private float _highton;
+    private float _onL2;
+    private float _onL1;
 
     public Vector2 _LeftInputValue;
     public Vector2 _RightInputValue;
@@ -168,7 +169,8 @@ public class CreateMessage : MonoBehaviour
         _Sh = 20;
 
         _mag = 0.75f;
-        _highton = 0;
+        _onL2 = 0;
+        _onL1 = 0;
 
         _RightInputValue = new Vector2(20,20);
         _LeftInputValue = new Vector2(20,20);
@@ -264,12 +266,16 @@ public class CreateMessage : MonoBehaviour
     private void OnR1Start(InputAction.CallbackContext context)
     {
         r1.sprite = _1[1];
-        _R1 = 30;
+        _R1 = 10;
     }
     private void OnR1End(InputAction.CallbackContext context)
     {
         r1.sprite = _1[0];
-        _R1 = 20;
+        if(_onL1==0){
+            _R1 = 20;
+        }else if(_onL1==1){
+            _R1 = 30;
+        }
     }
     private void OnR2Start(InputAction.CallbackContext context)
     {
@@ -282,7 +288,7 @@ public class CreateMessage : MonoBehaviour
     {
         r2.sprite = _2[0];
         _R2 = 20;
-        if(_highton == 0){
+        if(_onL2 == 0){
             _mag = 0.75f;
         }else{
             _mag = 1;
@@ -303,17 +309,25 @@ public class CreateMessage : MonoBehaviour
     {
         l1.sprite = _1[1];
         _L1 = 30;
+        _onL1 = 1;
+        if(_R1==20){
+            _R1 = 30;
+        }
     }
     private void OnL1End(InputAction.CallbackContext context)
     {
         l1.sprite = _1[0];
         _L1 = 20;
+        _onL1 = 0;
+        if(_R1!=10){
+            _R1 = 20;
+        }
     }
     private void OnL2Start(InputAction.CallbackContext context)
     {
         l2.sprite = _2[1];
         _L2 = 30;
-        _highton = 1;
+        _onL2 = 1;
         if(_mag == 0.75f){
             _mag = 1;
             ChangeSpeed();
@@ -323,7 +337,7 @@ public class CreateMessage : MonoBehaviour
     {
         l2.sprite = _2[0];
         _L2 = 20;
-        _highton = 0;
+        _onL2 = 0;
         if(_mag != 0.5f){
             _mag = 0.75f;
             ChangeSpeed();
@@ -373,7 +387,7 @@ public class CreateMessage : MonoBehaviour
     {
         _LeftInputValue = context.ReadValue<Vector2>();
         _LeftLocateValue = _LeftInputValue;
-        _LeftInputValue *= 10 * _mag;
+        _LeftInputValue *= -10 * _mag;
         _LeftInputValue.x += 20;
         _LeftInputValue.y += 20;
         _LeftLocateValue *= 60f;
@@ -384,7 +398,7 @@ public class CreateMessage : MonoBehaviour
         _RightInputValue = _gameInputs.Action.RightStick.ReadValue<Vector2>();
         _LeftInputValue = _gameInputs.Action.LeftStick.ReadValue<Vector2>();
         _RightInputValue *= 10 * _mag;
-        _LeftInputValue *= 10 * _mag;
+        _LeftInputValue *= -10 * _mag;
         _RightInputValue.x += 20;
         _RightInputValue.y += 20;
         _LeftInputValue.x += 20;
