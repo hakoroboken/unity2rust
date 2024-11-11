@@ -73,6 +73,8 @@ public class CreateMessage : MonoBehaviour
     public float _Sh;
 
     public float _mag;
+    private float _onL1;
+    private float _onR1;
 
     public Vector2 _LeftInputValue;
     public Vector2 _RightInputValue;
@@ -167,6 +169,8 @@ public class CreateMessage : MonoBehaviour
         _Sh = 20;
 
         _mag = 1;
+        _onL1 = 0;
+        _onR1 = 0;
 
         _RightInputValue = new Vector2(20,20);
         _LeftInputValue = new Vector2(20,20);
@@ -233,11 +237,13 @@ public class CreateMessage : MonoBehaviour
     {
         down.sprite = _arrow[1];
         _Do = 30;
+        _Up = 10;
     }
     private void OnDownEnd(InputAction.CallbackContext context)
     {
         down.sprite = _arrow[0];
         _Do = 20;
+        _Up = 20;
     }
     private void OnRightStart(InputAction.CallbackContext context)
     {
@@ -263,11 +269,17 @@ public class CreateMessage : MonoBehaviour
     {
         r1.sprite = _1[1];
         _R1 = 30;
+        _onR1 = 1;
     }
     private void OnR1End(InputAction.CallbackContext context)
     {
         r1.sprite = _1[0];
-        _R1 = 20;
+        if(_onL1==0){
+            _R1 = 20;
+        }else if(_onL1==1){
+            _R1 = 10;
+        }
+        _onR1 = 0;
     }
     private void OnR2Start(InputAction.CallbackContext context)
     {
@@ -293,11 +305,19 @@ public class CreateMessage : MonoBehaviour
     {
         l1.sprite = _1[1];
         _L1 = 30;
+        if(_R1!=30){
+            _R1 = 10;
+        }
+        _onL1 = 1;
     }
     private void OnL1End(InputAction.CallbackContext context)
     {
         l1.sprite = _1[0];
         _L1 = 20;
+        if(_onR1==0){
+            _R1 = 20;
+        }
+        _onL1 = 0;
     }
     private void OnL2Start(InputAction.CallbackContext context)
     {
