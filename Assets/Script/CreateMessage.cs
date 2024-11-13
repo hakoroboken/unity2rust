@@ -268,7 +268,7 @@ public class CreateMessage : MonoBehaviour
     private void OnR1Start(InputAction.CallbackContext context)
     {
         r1.sprite = _1[1];
-        _R1 = 30;
+        _R1 = 23;
         _onR1 = 1;
     }
     private void OnR1End(InputAction.CallbackContext context)
@@ -277,7 +277,7 @@ public class CreateMessage : MonoBehaviour
         if(_onL1==0){
             _R1 = 20;
         }else if(_onL1==1){
-            _R1 = 10;
+            _R1 = 17;
         }
         _onR1 = 0;
     }
@@ -305,8 +305,8 @@ public class CreateMessage : MonoBehaviour
     {
         l1.sprite = _1[1];
         _L1 = 30;
-        if(_R1!=30){
-            _R1 = 10;
+        if(_R1!=23){
+            _R1 = 17;
         }
         _onL1 = 1;
     }
@@ -367,7 +367,7 @@ public class CreateMessage : MonoBehaviour
     {
         _RightInputValue = context.ReadValue<Vector2>();
         _RightLocateValue = _RightInputValue;
-        _RightInputValue *= 8 * _mag;
+        _RightInputValue *= -8 * _mag;
         _RightInputValue.x += 20;
         _RightInputValue.y += 20;
         _RightLocateValue *= 60f;
@@ -377,7 +377,7 @@ public class CreateMessage : MonoBehaviour
     {
         _LeftInputValue = context.ReadValue<Vector2>();
         _LeftLocateValue = _LeftInputValue;
-        _LeftInputValue *= 10 * _mag;
+        _LeftInputValue *= -10 * _mag;
         _LeftInputValue.x += 20;
         _LeftInputValue.y += 20;
         _LeftLocateValue *= 60f;
@@ -387,8 +387,8 @@ public class CreateMessage : MonoBehaviour
     private void ChangeSpeed(){
         _RightInputValue = _gameInputs.Action.RightStick.ReadValue<Vector2>();
         _LeftInputValue = _gameInputs.Action.LeftStick.ReadValue<Vector2>();
-        _RightInputValue *= 8 * _mag;
-        _LeftInputValue *= 10 * _mag;
+        _RightInputValue *= -8 * _mag;
+        _LeftInputValue *= -10 * _mag;
         _RightInputValue.x += 20;
         _RightInputValue.y += 20;
         _LeftInputValue.x += 20;
