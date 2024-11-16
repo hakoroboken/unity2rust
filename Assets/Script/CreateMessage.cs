@@ -268,7 +268,7 @@ public class CreateMessage : MonoBehaviour
     private void OnR1Start(InputAction.CallbackContext context)
     {
         r1.sprite = _1[1];
-        _R1 = 23;
+        _R1 = 21;
         _onR1 = 1;
     }
     private void OnR1End(InputAction.CallbackContext context)
@@ -277,7 +277,7 @@ public class CreateMessage : MonoBehaviour
         if(_onL1==0){
             _R1 = 20;
         }else if(_onL1==1){
-            _R1 = 17;
+            _R1 = 19;
         }
         _onR1 = 0;
     }
@@ -305,8 +305,8 @@ public class CreateMessage : MonoBehaviour
     {
         l1.sprite = _1[1];
         _L1 = 30;
-        if(_R1!=23){
-            _R1 = 17;
+        if(_R1!=21){
+            _R1 = 19;
         }
         _onL1 = 1;
     }
