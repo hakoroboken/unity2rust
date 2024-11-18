@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    public bool _sendcan = false;
+    public bool _sendcan = true;
 
     public GameObject _touch;
     public GameObject _OK;
